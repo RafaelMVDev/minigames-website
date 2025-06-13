@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plataforma de Jogos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}">
+</head>
+
+<body>
+    <!-- ===== Header ===== -->
+    <header>
+        <h1>M0ravi Company</h1>
+        <div class="links">
+            <a href="#">Página Inicial</a>
+            <a href="#">Tutoriais</a>
+            <a href="#">Criadores</a>
+        </div>
+    </header>
+
+    <!-- ===== Carrossel ===== -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+            <!-- Repetir esse bloco para cada jogo -->
+            <div class="carousel-item active">
+                <div class="d-flex flex-column align-items-center">
+                    <h3>Adivinhe o Número</h3>
+                    <p>Neste jogo será sorteado um número e você fará tentativas para acertar ele. </p>
+                    <div class="marcador">Adivinhe o Número</div>
+                    <img src="caminho-da-sua-imagem1.jpg" alt="Imagem do Jogo 1" />
+                    <button class="btn btn-primary btn-jogar">Jogar</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex flex-column align-items-center">
+                    <h3>Batalha Naval</h3>
+                    <p>O objetivo do jogo é adivinhar em qual quadrado se encontra os navios inimigos.</p>
+                    <div class="marcador">Batalha Naval</div>
+                    <img src="caminho-da-sua-imagem2.jpg" alt="Imagem do Jogo 2" />
+                    <button class="btn btn-primary btn-jogar">Jogar</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex flex-column align-items-center">
+                    <h3>Jogo da Forca</h3>
+                    <p>Deve-se descobrir a palavra secreta através do posicionamento das letras.</p>
+                    <div class="marcador">Jogo da Forca</div>
+                    <img src="caminho-da-sua-imagem3.jpg" alt="Imagem do Jogo 3" />
+                    <button class="btn btn-primary btn-jogar">Jogar</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex flex-column align-items-center">
+                    <h3>Jokenpo</h3>
+                    <p>Também conhecido como "Pedra, Papel e Tesoura".</p>
+                    <p>É um jogo que através de gestos com as mãos determinar o vencedor.</p>
+                    <div class="marcador">Jokenpo</div>
+                    <img src="caminho-da-sua-imagem4.jpg" alt="Imagem do Jogo 4" />
+                    <button class="btn btn-primary btn-jogar">Jogar</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex flex-column align-items-center">
+                    <h3>Quiz</h3>
+                    <p>Um jogo de perguntas e respostas.</p>
+                    <div class="marcador">Quiz</div>
+                    <img src="caminho-da-sua-imagem5.jpg" alt="Imagem do Jogo 5" />
+                    <button class="btn btn-primary btn-jogar">Jogar</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex flex-column align-items-center">
+                    <h3>Torre de Hanoi</h3>
+                    <p>Criado em 1883, um quebra cabeças matemático</p>
+                    <p>com o objetivo de movimentor discos de uma torre a outra.</p>
+                    <div class="marcador">Torre de Hanoi</div>
+                    <img src="caminho-da-sua-imagem6.jpg" alt="Imagem do Jogo 6" />
+                    <button class="btn btn-primary btn-jogar">Jogar</button>
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- Indicadores -->
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+        </ol>
+
+        <!-- Setas -->
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+
+</html>

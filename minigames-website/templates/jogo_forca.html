@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jogo da Forca</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style_forca.css') }}">
+</head>
+<body>
+<header>
+    <h1>Jogo da Forca</h1>
+    <nav>
+      <a href="#" tabindex="0" aria-label="Página Inicial">página inicial</a>
+      <a href="#" tabindex="0" aria-label="GitHub">github</a>
+      <a href="#" tabindex="0" aria-label="LinkedIn">linkedin</a>
+    </nav>
+  
+</header>
+<main>
+  <section class="forca-container" aria-label="Figura da forca">
+    <h2 class="forca-titulo">Forca</h2>
+    <div class="forca-figura" aria-hidden="true">
+      <div class="post-vertical"></div>
+      <div class="post-horizontal"></div>
+     
+    </div>
+  </section>
+  <section class="jogo-info" aria-label="Jogo da palavra">
+    <div class="palavra" aria-live="polite" aria-atomic="true" aria-relevant="additions removals">
+      <span class="letra-espaco" aria-label="posição 1 letra"></span>
+      <span class="letra-espaco" aria-label="posição 2 letra"></span>
+      <span class="letra-espaco" aria-label="posição 3 letra"></span>
+      <span class="letra-espaco" aria-label="posição 4 letra"></span>
+      <span class="letra-espaco" aria-label="posição 5 letra"></span>
+      <span class="letra-espaco" aria-label="posição 6 letra"></span>
+    </div>
+    <form class="input-container" aria-label="Escolha da letra" onsubmit="return false;">
+        <label for="letraInput">Escolha uma letra:</label>
+        <input type="text" id="letraInput" maxlength="1" pattern="[a-zA-Z]" autocomplete="off" inputmode="text" />
+  
+    </div>
+  </section>
+</main>
+<footer>
+  &copy; 2025 MORAVI MINIGAMES
+</footer>
+</body>
+</html>
+

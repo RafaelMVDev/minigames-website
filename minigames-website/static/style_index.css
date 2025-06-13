@@ -1,0 +1,82 @@
+/* ===== Estilos Gerais ===== */
+body {
+    background-color: #ffce85; /* cor do fundo do site */
+  }
+  
+  /* ===== Header ===== */
+  header {
+    background-color: #4c5c6d;
+    color: rgb(231, 223, 223);
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .links {
+    margin-top: 10px;
+  }
+  
+  .links a {
+    color: white;
+    margin: 0 15px;
+    font-size: 0.9em;
+    text-decoration: none;
+  }
+  
+  /* ===== Carrossel ===== */
+  .carousel {
+    margin: 20px auto;
+    width: 80%;
+    position: relative;
+    padding-bottom: 80px;
+  }
+  
+  .carousel-item {
+    text-align: center;
+  }
+  
+  .carousel-item img {
+    width: 300px;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 10px;
+  }
+  
+  /* ===== Indicadores (bolinhas) ===== */
+  .carousel-indicators {
+    bottom: 25px;
+    justify-content: center;
+  }
+  
+  .carousel-indicators li {
+    background-color: black;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 4px;
+  }
+  
+  .carousel-indicators .active {
+    background-color: gray;
+  }
+  
+  /* ===== Setas do carrossel ===== */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(1); /* deixa setas pretas */
+  }
+  
+  /* ===== Botão Jogar ===== */
+  .btn-jogar {
+    margin-top: 10px;
+  }
+  
+  /* ===== Marcador (nome do jogo) ===== */
+  .marcador {
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+  }

@@ -1,0 +1,177 @@
+:root {
+    --primary-color: #374151;
+    --secondary-color: #ef4444;
+    --background-color: #f3f4f6;
+    --accent-color: #3b82f6;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --header-bg: #111827;
+    --header-text: #f9fafb;
+    --header-links-color: #9ca3af;
+    --header-links-hover: #3b82f6;
+
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--primary-color);
+  }
+  header{
+    width: 100%;
+    background-color: var(--header-bg);
+    padding: 1rem 1rem 1.5rem 1rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+    color: var(--header-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    user-select: none;
+  }
+  nav {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  nav a {
+    color: var(--header-links-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.15rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: var(--header-links-hover);
+    border-bottom-color: var(--header-links-hover);
+    outline: none;
+  }
+
+  main {
+    flex: 1;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 2rem;
+  }
+
+  /* Área da forca */
+  .forca-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    position: relative;
+  }
+  .forca-titulo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+  }
+  .forca-figura {
+    width: 200px;
+    height: 250px;
+    border: 5px solid var(--primary-color);
+    border-radius: 4px;
+    background: #f9fafb;
+    position: relative;
+  }
+  /* Representação simplificada dos elementos da forca */
+  .post-vertical {
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    width: 10px;
+    height: 200px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+  }
+  .post-horizontal {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    width: 120px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 4px 4px 0 0;
+  }
+  
+  /* Área da palavra e letras */
+  .jogo-info {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .palavra {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .letra-espaco {
+    width: 40px;
+    height: 60px;
+    border-bottom: 3px solid var(--accent-color);
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: transparent;
+    user-select: none;
+  }
+  /* Letras digitadas */
+  .letras-digitadas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .letra-digitada {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 6px;
+    user-select: none;
+  }
+
+  /* Footer info placeholder */
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+  }
+

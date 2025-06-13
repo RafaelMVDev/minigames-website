@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='jokenpo/style.css') }}">
+    <title>Pedra Papel Tesoura</title>
+</head>
+<body>
+    <header>
+        <h1>Jogo da Forca</h1>
+        <nav>
+          <a href="#" tabindex="0" aria-label="Página Inicial">página inicial</a>
+          <a href="#" tabindex="0" aria-label="GitHub">github</a>
+          <a href="#" tabindex="0" aria-label="LinkedIn">linkedin</a>
+        </nav>
+      
+    </header>
+ 
+    <div class = "main_div">
+        <h2>Escolha uma das três opções</h2>
+        <div class = "options_div">
+            <form action ="{{ url_for('jokenpo') }}" method = "post">
+                <button  class = "select_div" type = "submit" value = "pedra" name = "acao_jogo" >
+                    <img src = "{{url_for('static',filename = 'jokenpo/pedra_img.png')}}"> 
+                </button>
+            </form>
+           
+            <p class = "options_text">- Pedra</p>
+            <form action ="{{ url_for('jokenpo') }}" method = "post">
+                <button type = "submit" value = "papel" class ="select_div" name = "acao_jogo">
+                    <img src = "{{url_for('static',filename = 'jokenpo/papel_img.png')}}"> 
+                </button>
+            </form>
+            <p class = "options_text">- Papel</p>
+            <form action ="{{ url_for('jokenpo') }}" method = "post"> 
+                <button  class = "select_div" type = "submit" value = "tesoura" name = "acao_jogo">
+                    <img src = "{{url_for('static',filename = 'jokenpo/tesoura_img.png')}}"> 
+                </button>
+            </form>
+            <p class ="options_text">- Tesoura</p>
+        </div>
+      
+        <br>
+     
+        <p> Selecione uma das opções acima, e o computador também escolherá uma opção!
+        </p>
+        <form action ="{{ url_for('jokenpo') }}" method = "post"> 
+            <button class = "botao_jogar" type = "submit" value = "jogar" name = "acao_jogo">Jogar!</button>
+        </form>
+        <div class = game_div>
+            <div class = "player_div">
+                <p class = "title_text">Sua escolha</p>
+                <img id = "img_escolha_player" name = "img_escolha_player" src = {{imagem_p}}>
+            </div>
+            <div class = "bot_div">
+                <p class="title_text">Escolha do Bot</p>
+                <img id = "img_escolha_player" name = "img_escolha_player" src = {{imagem_b}}>
+            </div>
+    
+        </div>
+        <p>
+            Pontuação:  {{placar}}
+        </p>
+        <p class = "{{cor_aviso}} "id = "mensagem_aviso">{{mensagem_aviso}}</p>
+       
+        
+    </div>
+    <script src = "{{url_for('static',filename = 'jokenpo/scripts.js')}}" defer></script>
+    <footer>
+        &copy; 2025 MORAVI MINIGAMES
+      </footer>
+</body>
+</html>
