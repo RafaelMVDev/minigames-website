@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: antiquewhite;">
+    {% if session['username']%}
+        <p> Bem vindo {{session['username']}}</p>
+    {%else%}
+    <form name = "send_data" action = {{url_for('login_validation')}} method = "POST">
+        <p>Nome do usuário</p>
+        <input placeholder = "Usuario" type="text" name="usuario" id = "usuario">
+        <p>Senha do usuário</p>
+        <input placeholder =  "Senha" type="password" name = "senha" id = "senha"> 
+        <button type = "submit"> Enviar dados</button>
+
+    </form>
+    
+   
+    {%endif%}
+  
+</body>
+
+
+</html>

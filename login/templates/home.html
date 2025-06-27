@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl-br">
+<head>
+  <title>Página inicial</title>
+</head>
+<body>
+  {% if session.get("username") %}
+    <h2>Confira nossos produtos:</h2>
+    <ul>
+      {% for produto in produtos %}
+        <li>{{ produto }}</li>
+      {% endfor %}
+    </ul>
+    <button ><a href = {{url_for('profile')}}>acessar perfil</a></button>
+  {% else %}
+    <p>Por favor, faça login para ver os produtos.</p>
+  {% endif %}
+</body>
+</html>
