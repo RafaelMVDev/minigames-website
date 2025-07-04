@@ -6,9 +6,7 @@
     <title>Document</title>
 </head>
 <body style="background-color: antiquewhite;">
-    {% if session['username']%}
-        <p> Bem vindo {{session['username']}}</p>
-    {%else%}
+ 
     <form name = "send_data" action = {{url_for('login_validation')}} method = "POST">
         <p>Nome do usuário</p>
         <input placeholder = "Usuario" type="text" name="usuario" id = "usuario">
@@ -19,7 +17,7 @@
     </form>
     
    
-    {%endif%}
+   
   
 </body>
 

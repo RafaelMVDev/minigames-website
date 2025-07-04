@@ -6,12 +6,22 @@
   <title>Perfil de {{user}}</title>
 </head>
 
-<body>
+<body style="background-color: antiquewhite;">
+
   <h1>
     Bem vindo, {{user}}!
   </h1>
   <p> Este é o seu perfil</p>
-  <button><a href = {{url_for('logout')}}>DESLOGAR</a></button>
+
+  <h3> Escolha uma cor para o seu fundo (lá ele) </h3>
+
+    <button style="background-color: aqua; width: 60px; height: 50px;"></button>
+    <button style="background-color: rgb(255, 94, 0); width: 60px; height: 50px;"></button>
+    <button style="background-color: rgb(59, 141, 66); width: 60px; height: 50px;"></button>
+
+  <hr style="color: whitesmoke;">
+  <button><a href={{url_for('logout')}}>DESLOGAR</a></button>
+  <button><a href={{url_for('home')}}>PÁGINA DE PRODUTOS</a></button>
 </body>
 
 </html>

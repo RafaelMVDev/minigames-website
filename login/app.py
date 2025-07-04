@@ -1,14 +1,15 @@
-from flask import Flask, session, redirect, url_for, request, render_template
+from flask import Flask, session, redirect, url_for, request, render_template, make_response
 
 app = Flask(__name__)
 
 app.secret_key = "rafaeléumcaramuitolegal"
-
-SENHA_USUARIO = "UMCARAMUITOLEGAL123"
+NOME_USUARIO = "moravi"
+SENHA_USUARIO = "1234"
 produtos = ["banana","maça"]
 @app.route("/", methods = ["GET"])
 def index():
-    if 'username' in session:
+    user = request.cookies.get("username")
+    if user:
         print("TEM SESSÃO!")
         return redirect(url_for("home"))
        
@@ -31,24 +32,30 @@ def login_validation():
     if request.method == "POST":
         usuario =  request.form.get("usuario")
         senha  = request.form.get("senha")
-        if senha == SENHA_USUARIO:
+        if usuario == NOME_USUARIO and senha == SENHA_USUARIO:
+            resposta = make_response(redirect(url_for('home')))
+            resposta.set_cookie('username', usuario, max_age = 60 *10)
             session["username"] = usuario
             print(session.get("username"))
-            return redirect(url_for("home"))
+            return resposta
         else:
             return render_template("senha_errada.html")
 
 @app.route('/profile', methods = ["GET"]) 
 def profile():
-    if request.method == "GET":
-        return render_template("perfil.html", user = session.get("username"), produtos = ["banana","maça"])
-    else:
-        return f'TA ESTRANHO ISSO AE PAIZÃO'
+    usuario = request.cookies.get('username')
+    print(usuario)
+    if not usuario:
+        return redirect(url_for('login'))
+    return render_template("perfil.html", user = session.get("username"), produtos = ["banana","maça"])
+    
 
 @app.route('/logout', methods = ["GET","POST"])
 def logout():
+    resposta = make_response(redirect(url_for('login')))
+    resposta.set_cookie('username','',expires=0)
     session.pop("username",None)
-    return redirect(url_for("login"))
+    return resposta
 
 
 
