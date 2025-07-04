@@ -147,6 +147,13 @@
     color: transparent;
     user-select: none;
   }
+  .palavra_descobrir {
+   
+   
+    font-weight: 700;
+    font-size: 80px;
+    color: var(--accent-color);
+  }
   /* Letras digitadas */
   .letras-digitadas {
     display: flex;
@@ -175,3 +182,10 @@
     color: var(--primary-color);
   }
 
+.estado_forca{
+  width:90%;
+  height:90%;
+  margin:0px;
+  padding:0px
+
+}

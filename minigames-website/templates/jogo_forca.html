@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Jogo da Forca</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style_forca.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='forca/style.css') }}">
 </head>
 <body>
 <header>
@@ -22,21 +22,22 @@
   <section class="forca-container" aria-label="Figura da forca">
     <h2 class="forca-titulo">Forca</h2>
     <div class="forca-figura" aria-hidden="true">
-      <div class="post-vertical"></div>
-      <div class="post-horizontal"></div>
-     
+      <img name = "estagio_forca" class="estado_forca" src = "{{url_for('static',filename = 'forca/forca0.png')}}"></img>
     </div>
   </section>
   <section class="jogo-info" aria-label="Jogo da palavra">
     <div class="palavra" aria-live="polite" aria-atomic="true" aria-relevant="additions removals">
-      <span class="letra-espaco" aria-label="posição 1 letra"></span>
+      <p id = "palavra_descobrir" name = "palavra_descobrir" class = "palavra_descobrir">_ _ _ _ _</p>
+      <!--
+      <span class="letra-espaco" aria-label="posição 1 letra">t</span>
       <span class="letra-espaco" aria-label="posição 2 letra"></span>
       <span class="letra-espaco" aria-label="posição 3 letra"></span>
       <span class="letra-espaco" aria-label="posição 4 letra"></span>
       <span class="letra-espaco" aria-label="posição 5 letra"></span>
       <span class="letra-espaco" aria-label="posição 6 letra"></span>
+      -->
     </div>
-    <form class="input-container" aria-label="Escolha da letra" onsubmit="return false;">
+    <form class="input-container" aria-label="Escolha da letra" onsubmit="mandar_escolha_player">
         <label for="letraInput">Escolha uma letra:</label>
         <input type="text" id="letraInput" maxlength="1" pattern="[a-zA-Z]" autocomplete="off" inputmode="text" />
   
@@ -46,6 +47,7 @@
 <footer>
   &copy; 2025 MORAVI MINIGAMES
 </footer>
+<script src = "{{url_for('static',filename = 'forca/scripts.js')}}" defer></script>
 </body>
 </html>
 
