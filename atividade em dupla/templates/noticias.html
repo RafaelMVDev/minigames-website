@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='noticias.css') }}">
+</head>
+
+<body>
+    <nav> a </nav>
+    {% for categoria in noticias_ordem %}
+        <div class = "corpo_noticias">
+        <p>{{categoria}}</p>
+        {% for noticia in noticias[categoria]%}
+            <a href={{noticia[0]}}>{{noticia[1]}}</a>
+        {%endfor%}
+        </div>
+    {% endfor %}
+</body>
+
+</html>

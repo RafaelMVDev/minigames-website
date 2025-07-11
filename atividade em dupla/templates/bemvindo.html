@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bemvindo.css') }}">
+
+</head>
+<body class = {{tema}}>
+    <h1> Bem vindo {{username}} !</h1>
+    <p>Vezes em que você visitou essa página durante a sessão: {{contador}}</p>
+    <div class="main">
+        Escolha seu tema:
+
+        <form action="/bemvindo" method="post">
+            <button type="submit" value = "tema_claro" name="tema" >Claro</button>
+            <button type="submit" value = "tema_escuro" name="tema" placeholder="Escuro">Escuro </button>
+            <button type="submit">Testar</button>
+        </form>
+    </div>
+
+    <div>
+        <a href = "/noticias">
+            <button type="submit" value = "" name = "pagina">Noticias</button>
+        </a>
+
+    </div>
+
+
+</body>
+</html>
