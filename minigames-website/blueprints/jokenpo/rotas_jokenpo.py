@@ -64,7 +64,7 @@ def jokenpo():
         resposta["placar"] = jokenpo_data["placar"]
         jokenpo_data["escolha_bot_url"] = url_for('jokenpo.static',filename = f'{jokenpo_data["escolha_bot"]}_img.png')
         resposta["escolha_bot_url"] = jokenpo_data["escolha_bot_url"]
-    
+        session["jokenpo"] = jokenpo_data
         return resposta # vai ser enviado de volto pro js mostrar pro cliente
 
     #GET request so é atividado quando  a URL é acessada / página recarregada

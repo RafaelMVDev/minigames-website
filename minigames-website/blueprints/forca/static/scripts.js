@@ -2,8 +2,9 @@
 const URL_ALVO = '/forca';
 
 // elementos do html
-const estado_forca = document.getElementById('estado_forca')
+const estado_forca = document.getElementById('estagio_forca')
 const palavra_atual = document.getElementById('palavra_descobrir')
+const form_letra = document.getElementById('form_escolher_letra')
 
 // funcoes uteis
 function setarEstadoForca(estagio){
@@ -11,9 +12,9 @@ function setarEstadoForca(estagio){
     return elemento.dataset.escolha;
 }
 
-function atualizar_dados_rodada(palavra_atual, erros){
+function atualizar_dados_rodada(pa, erros){
     // alterando a mensagem de aviso que aparece depois de cada rodada
-    palavra_atual.innerText = palavra_atual
+    palavra_atual.innerText = pa
     estado_forca.src = 'static\\forca\\'+"forca"  + erros +'.png'
   
    
@@ -45,15 +46,20 @@ function atualizar_dados_rodada(palavra_atual, erros){
     
 }
     */
-async function mandar_escolha_player(letra_escolhida){
-    console.log(letra_escolhida)
+async function mandar_escolha_player(evento){
+    evento.preventDefault()
+
+    const dados = new FormData(this)
+    const letra = dados.get("letraInput")
+    console.log(dados)
+    console.log(letra)
     const post_data = {
         method:'POST',
         
         headers:{
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({escolha_player : letra_escolhida})
+        body: JSON.stringify({escolha_player : letra})
     }
     response = await fetch(URL_ALVO, post_data)
     if (!response.ok){
@@ -79,7 +85,7 @@ async function mandar_escolha_player(letra_escolhida){
     }
 }
 
-
+form_letra.addEventListener("submit",mandar_escolha_player)
 
 
  
