@@ -1,0 +1,77 @@
+:root {
+    --primary-color: #374151;
+    --secondary-color: #ef4444;
+    --background-color: #f3f4f6;
+    --accent-color: #3b82f6;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --header-bg: #111827;
+    --header-text: #f9fafb;
+    --header-links-color: #9ca3af;
+    --header-links-hover: #3b82f6;
+
+}
+
+body{
+
+    margin: 0;
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--primary-color);
+}
+
+header{
+    width: 100%;
+    background-color: var(--header-bg);
+    padding: 1rem 1rem 1.5rem 1rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+    color: var(--header-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    user-select: none;
+  }
+  nav {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  nav a {
+    color: var(--header-links-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.15rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: var(--header-links-hover);
+    border-bottom-color: var(--header-links-hover);
+    outline: none;
+  }
+h2{
+    color:var(--primary-color)
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+  }
+

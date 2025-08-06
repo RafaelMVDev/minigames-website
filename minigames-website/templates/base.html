@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{% block titulo_site %}Jogo{% endblock %}</title> <!-- bloco pra título customizado -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='base/style.css') }}">
+  {% block estilos_css %}
+  
+  {% endblock %} <!-- bloco pra inserir CSS -->
+</head>
+<body>
+  <header>
+    <h1>{% block titulo_header %}Jogo {% endblock %}</h1> <!-- bloco pra título customizado também aqui -->
+    <nav> <!-- manter fixo -->
+      <a href="#" tabindex="0" aria-label="Página Inicial">página inicial</a>
+      <a href="#" tabindex="0" aria-label="GitHub">github</a>
+      <a href="#" tabindex="0" aria-label="LinkedIn">linkedin</a>
+    </nav>
+  </header>
+
+  {% block conteudo %}
+  
+  {% endblock %} <!-- bloco pra inserir corpo customizado -->
+
+  <footer>
+    &copy; 2025 MORAVI MINIGAMES
+  </footer> <!-- manter fixo -->
+
+  {% block scripts %}
+  <!-- scripts personalizados vão aqui -->
+  {% endblock %} <!-- bloco pra inserir javascript customizado -->
+</body>
+</html>

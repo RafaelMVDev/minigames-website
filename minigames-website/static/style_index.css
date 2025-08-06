@@ -1,26 +1,9 @@
 /* ===== Estilos Gerais ===== */
-body {
-    background-color: #ffce85; /* cor do fundo do site */
-  }
+
   
-  /* ===== Header ===== */
-  header {
-    background-color: #4c5c6d;
-    color: rgb(231, 223, 223);
-    text-align: center;
-    padding: 20px 0;
-  }
+
   
-  .links {
-    margin-top: 10px;
-  }
   
-  .links a {
-    color: white;
-    margin: 0 15px;
-    font-size: 0.9em;
-    text-decoration: none;
-  }
   
   /* ===== Carrossel ===== */
   .carousel {
