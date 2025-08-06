@@ -36,7 +36,7 @@ def jokenpo():
         jokenpo_data["escolha_player"] = escolha_p
         jokenpo_data["escolha_player_url"] = url_for('jokenpo.static',filename = f'{jokenpo_data["escolha_player"]}_img.png')
         escolha_bot = jk.escolherAleatorio()
-        jokenpo_data["escolha_bot"] = escolha_bots
+        jokenpo_data["escolha_bot"] = escolha_bot
         jokenpo_data["escolha_bot_url"] = url_for('jokenpo.static',filename = f'{jokenpo_data["escolha_bot"]}_img.png')
         
         resultado = jk.validarVencedorRodada(jokenpo_data["escolha_player"],escolha_bot)
