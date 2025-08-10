@@ -27,9 +27,9 @@ class Jokenpo():
            return 'bot'
 
     def validarVencedorJogo(self,pts_player,pts_bot):
-       if pts_player == 3:
+       if pts_player >= 3:
            return 'player'
-       elif pts_bot == 3:
+       elif pts_bot >= 3:
             return 'bot'
        else:
            return 'continuar'

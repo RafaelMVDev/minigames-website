@@ -6,72 +6,85 @@ from blueprints.jokenpo.logica_jogo.jokenpo import Jokenpo
 jk = Jokenpo()
 jk_bp = Blueprint("jokenpo",__name__,template_folder="templates",static_folder= "static")
 
+def data():
+    return session.setdefault("jokenpo", {
+        "pts_player": 0,
+        "pts_bot": 0,
+        "escolha_player": '',
+        "escolha_player_url": '',
+        "escolha_bot": '',
+        "escolha_bot_url": '',
+        "placar": "0x0",
+        "mensagem_aviso": '',
+        "cor_aviso": ''
+    })
+
 #  =====  Funções =====
-def inicializar_jokenpo() -> ():  
-    session["jokenpo"] = {}
-    session["jokenpo"]["pts_player"] = 0
-    session["jokenpo"]["pts_bot"] = 0
-    session["jokenpo"]["escolha_player"] = ''
-    session["jokenpo"]["escolha_player_url"] = ''
-    session["jokenpo"]["escolha_bot"] = ''
-    session["jokenpo"]["escolha_bot_url"] = ''
-    session["jokenpo"]["placar"] = "0x0"
-    session["jokenpo"]["mensagem_aviso"] = ''
-    session["jokenpo"]["cor_aviso"] = ''
+def reinicializar_jokenpo() -> ():  
+  
+    data()["pts_player"] = 0
+    data()["pts_bot"] = 0
+    data()["escolha_player"] = ''
+    data()["escolha_player_url"] = ''
+    data()["escolha_bot"] = ''
+    data()["escolha_bot_url"] = ''
+    data()["placar"] = "0x0"
+    data()["mensagem_aviso"] = ''
+    data()["cor_aviso"] = ''
 
 # rota cuida tanto do botao jogar, quanto o botao de selecionar uma escolha
+# Com base na escolha do player, realiza a rodada 
+def efetuar_rodada(escolha_player):
+    data()["escolha_player"] = escolha_player
+    data()["escolha_player_url"] = url_for('jokenpo.static',filename = f'{data()["escolha_player"]}_img.png')
+    data()["escolha_bot"] = jk.escolherAleatorio()
+    data()["escolha_bot_url"] =  url_for('jokenpo.static',filename = f'{data()["escolha_bot"]}_img.png')
+
+    resultado_rodada = jk.validarVencedorRodada(escolha_player,data()["escolha_bot"])
+    if resultado_rodada != "empate":
+        data()["cor_aviso"] = resultado_rodada +'_ganhou'
+        data()[f"pts_{resultado_rodada}"] += 1
+        data()["mensagem_aviso"] = resultado_rodada.capitalize() + ' venceu!' #concatenação simples
+        data()["placar"] = jk.formatarPlacar(session["jokenpo"]['pts_player'],session["jokenpo"]['pts_bot'])
+    else:
+        data()["cor_aviso"] = 'empate'
+        data()["mensagem_aviso"] = 'Empate!' # exibir mensagem diferente se ele perder
+
+    
+    return resultado_rodada # Retorna o resultado da rodada
 
 @jk_bp.route("",methods=['GET', 'POST'])
 def jokenpo():
-    print("oi")
+
     if not session.get('jokenpo'): # inicializa as variaveis da sessão logo que a primeira requisição é feita
-         inicializar_jokenpo()
-    jokenpo_data = session.get("jokenpo")
+         data() # inicializa a sessao
+
     if request.method == "POST":
-        jokenpo_data = session.get("jokenpo")
+
         dados = request.get_json() #aqui eu acesso os dados mandadados do client
-        escolha_p = jk.validarEscolha(dados.get("escolha_player"))
-        escolha_bot = jk.escolherAleatorio()
-
-        jokenpo_data["escolha_player"] = escolha_p
-        jokenpo_data["escolha_player_url"] = url_for('jokenpo.static',filename = f'{jokenpo_data["escolha_player"]}_img.png')
-        escolha_bot = jk.escolherAleatorio()
-        jokenpo_data["escolha_bot"] = escolha_bot
-        jokenpo_data["escolha_bot_url"] = url_for('jokenpo.static',filename = f'{jokenpo_data["escolha_bot"]}_img.png')
         
-        resultado = jk.validarVencedorRodada(jokenpo_data["escolha_player"],escolha_bot)
-        resposta = {}
-        # resultado retorna, 'player','bot' ou 'empate', por isso ja uso ele pra alterar a pontuação
-        if resultado != 'empate':
+        escolha_p = jk.validarEscolha(dados.get("escolha_player"))
+        efetuar_rodada(escolha_p) # realiza a rodada e atualiza os dados da sessão
 
-            jokenpo_data["cor_aviso"] = resultado+'_ganhou'
-            jokenpo_data[f"pts_{resultado}"] += 1
-            jokenpo_data["mensagem_aviso"] = resultado.capitalize()+' venceu!' #concatenação simples
-            jokenpo_data["placar"] = jk.formatarPlacar(jokenpo_data['pts_player'],jokenpo_data['pts_bot'])
-            # se o ponto foi feito, validamos o vencedor do jogo
-            resultado = jk.validarVencedorJogo(jokenpo_data["pts_player"],jokenpo_data["pts_bot"])
-            if resultado != 'continuar':
-                inicializar_jokenpo()
-                resposta["resultado_jogo"] =resultado 
-        else:
-            jokenpo_data["cor_aviso"] = 'empate'
-            jokenpo_data["mensagem_aviso"] = 'Empate!' # exibir mensagem diferente se ele perder
+        status_jogo = jk.validarVencedorJogo(data()["pts_player"],data()["pts_bot"])
+        resposta = {}
+        if status_jogo != 'continuar':
+            reinicializar_jokenpo()
+            resposta["resultado_jogo"] = status_jogo
 
         session.modified = True
-    
-        resposta["mensagem_aviso"] = jokenpo_data["mensagem_aviso"]
-        resposta["cor_aviso"] = jokenpo_data["cor_aviso"]
-        resposta["placar"] = jokenpo_data["placar"]
-        jokenpo_data["escolha_bot_url"] = url_for('jokenpo.static',filename = f'{jokenpo_data["escolha_bot"]}_img.png')
-        resposta["escolha_bot_url"] = jokenpo_data["escolha_bot_url"]
-        session["jokenpo"] = jokenpo_data
-        return resposta # vai ser enviado de volto pro js mostrar pro cliente
+        resposta["escolha_bot_url"] = data()["escolha_bot_url"]
+        resposta["mensagem_aviso"] = data()["mensagem_aviso"]
+        resposta["cor_aviso"] = data()["cor_aviso"]
+        resposta["placar"] = data()["placar"]
+
+        return resposta # vai ser enviado de volta pro js mostrar pro cliente
 
     #GET request so é atividado quando  a URL é acessada / página recarregada
 
     return render_template('jokenpo.html', 
-                        imagem_p=  jokenpo_data["escolha_player_url"],
-                        imagem_b= jokenpo_data['escolha_bot_url'],
-                        placar = jokenpo_data["placar"],
-                        mensagem_aviso = jokenpo_data["mensagem_aviso"],
-                        cor_aviso = jokenpo_data['cor_aviso'])
+                        imagem_p=  data()["escolha_player_url"],
+                        imagem_b= data()['escolha_bot_url'],
+                        placar = data()["placar"],
+                        mensagem_aviso = data()["mensagem_aviso"],
+                        cor_aviso = data()['cor_aviso'])

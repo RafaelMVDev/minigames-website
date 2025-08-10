@@ -8,14 +8,16 @@ const form_letra = document.getElementById('form_escolher_letra')
 
 // funcoes uteis
 function setarEstadoForca(estagio){
-    img_caminho = 'static\\forca\\'  + 'forca' +elemento.dataset.escolha +'.png';
+    console.log(__dirname)
+    img_caminho = 'forca\\static\\'  + 'forca' +elemento.dataset.escolha +'.png';
     return elemento.dataset.escolha;
 }
 
 function atualizar_dados_rodada(pa, erros){
     // alterando a mensagem de aviso que aparece depois de cada rodada
+     console.log(window.location.pathname)
     palavra_atual.innerText = pa
-    estado_forca.src = 'static\\forca\\'+"forca"  + erros +'.png'
+    estado_forca.src = 'forca\\static\\'+"forca"  + erros +'.png'
   
    
 

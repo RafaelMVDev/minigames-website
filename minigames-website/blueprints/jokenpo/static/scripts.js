@@ -10,7 +10,7 @@ msg_aviso = document.getElementById("mensagem_aviso")
 placar = document.getElementById("placar")
 div_vitoria = document.getElementById("v_div")
 msg_final = document.getElementById("msg_final")
-
+botao_novo_jogo  = document.getElementById("btn_jogar_novamente")
 // funcoes uteis
 function setar_escolha(elemento){
     img_caminho = 'jokenpo\\static\\'  +  elemento.dataset.escolha +'_img.png';
@@ -24,13 +24,16 @@ function atualizar_dados_rodada(pontuacao,msg,class_msg,escolha_bot){
     msg_aviso.className = class_msg
     placar.innerText = pontuacao
     div_img_bot.src = escolha_bot
+    console.log(pontuacao)
 
 }
 
-function mostar_mensagem_vitoria(vencedor){
+function exibir_mensagem_vitoria(vencedor){
     if (div_vitoria.style.display === 'none' || div_vitoria.style.display === ''){
         div_vitoria.style.display = 'block'
         botao_jogar.style.display = 'none'
+        div_img_player.src = "" // Limpa a imagem da escolha anterior do player
+        placar.style.display = "none"
         if (vencedor === "player"){
             msg_final.innerText = "Você ganhou!";
             div_vitoria.style.backgroundColor = "green"
@@ -45,19 +48,30 @@ function mostar_mensagem_vitoria(vencedor){
        
     }
     else{
-        botao_jogar.style.display = "none"
-        div_vitoria.style.display = 'none'
+        placar.style.display = "block"
+        botao_jogar.style.display = "inline-block"
+        div_vitoria.style.display = "none"
     }
    
     
 }
-async function mandar_escolha_player(){
+
+
+
+async function mandar_escolha_player(novo_jogo){
+    let body_data = ""
+    if (novo_jogo){
+        body_data = JSON.stringify("novo_jogo")
+    }
+    else{
+        body_data = JSON.stringify({escolha_player : sessionStorage.getItem("escolha_player")})
+    }
     const post_data = {
         method:'POST',
         headers:{
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({escolha_player : sessionStorage.getItem("escolha_player")})
+        body: body_data
     }
     response = await fetch(URL_ALVO, post_data)
     if (!response.ok){
@@ -74,11 +88,12 @@ async function mandar_escolha_player(){
         /* se a chave "resultado_jogo" existe, indica o fim do jogo */
         if (data.resultado_jogo){ 
             // exibir tela final aqui
-            mostar_mensagem_vitoria(data.resultado_jogo)
+            exibir_mensagem_vitoria(data.resultado_jogo)
         }
         /* se não existir, os dados enviados 
         são só para atualizar o estado da rodada */
         console.log(data)
+
         atualizar_dados_rodada(data.placar,data.mensagem_aviso,data.cor_aviso,data.escolha_bot_url)
       
     }
@@ -93,6 +108,9 @@ botoes_escolha.forEach(function(botao){
         /* above it saves the choice on a sessiom */
     })
 })
+
+
+
 botao_jogar.addEventListener('click',function(){
     try{
         mandar_escolha_player()
@@ -101,3 +119,11 @@ botao_jogar.addEventListener('click',function(){
     }
 }
 )
+
+botao_novo_jogo.addEventListener('click',function(){
+    try{
+        exibir_mensagem_vitoria()
+    }catch(erro){
+        console.log(erro)
+    }
+})
