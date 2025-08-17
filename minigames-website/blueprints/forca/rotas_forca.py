@@ -6,7 +6,12 @@ from blueprints.forca.logica_jogo.forca import Forca
 fc = Forca()
 fc_bp = Blueprint("forca",__name__,template_folder="templates",static_folder= "static")
 
-def inicializar_forca():
+def data():
+    return session.setdefault("forca",{
+        "erros" : 0;
+        "palavra_esc"
+
+    })
     session["forca"] = {}
     session["forca"]["erros"] = 0
     session["forca"]["palavra_escolhida"] = fc.palavraAleatoria() 
