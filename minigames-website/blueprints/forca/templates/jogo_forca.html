@@ -5,7 +5,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Jogo da Forca</title>
-
   <link rel="stylesheet" href="{{ url_for('forca.static', filename='style.css') }}">
 </head>
 <body>
@@ -19,30 +18,38 @@
   
 </header>
 <main>
-  <section class="forca-container" aria-label="Figura da forca">
-    <h2 class="forca-titulo">Forca</h2>
-    <div class="forca-figura" aria-hidden="true">
-      <img name = "estagio_forca" id = "estagio_forca" class="estado_forca" src = "{{url_for('forca.static',filename = 'forca0.png')}}"></img>
-    </div>
-  </section>
-  <section class="jogo-info" aria-label="Jogo da palavra">
-    <div class="palavra" aria-live="polite" aria-atomic="true" aria-relevant="additions removals">
-      <p id = "palavra_descobrir" name = "palavra_descobrir" class = "palavra_descobrir">_ _ _ _ _</p>
-      <!--
-      <span class="letra-espaco" aria-label="posição 1 letra">t</span>
-      <span class="letra-espaco" aria-label="posição 2 letra"></span>
-      <span class="letra-espaco" aria-label="posição 3 letra"></span>
-      <span class="letra-espaco" aria-label="posição 4 letra"></span>
-      <span class="letra-espaco" aria-label="posição 5 letra"></span>
-      <span class="letra-espaco" aria-label="posição 6 letra"></span>
-      -->
-    </div>
-    <form id = "form_escolher_letra" class="input-container" aria-label="Escolha da letra" >
-        <label for="letraInput">Escolha uma letra:</label>
-        <input type="text" id="letraInput" name = "letraInput" maxlength="1" pattern="[a-zA-Z]" autocomplete="off" inputmode="text" />
-    </form>
-    </div>
-  </section>
+  <div class = "game_div">
+      <div id = "v_div" class = "vitoria_div" name = "v_div">
+          <h2 id = "msg_final" name = "msg_final"> </h2>
+          <button id =  "btn_jogar_novamente" name = "btn_jogar_novamente">Novo Jogo</button>
+      </div>
+      <section class="forca-container" aria-label="Figura da forca">
+        <h2 class="forca-titulo">Forca</h2>
+        <div class="forca-figura" aria-hidden="true">
+          <img name = "estagio_forca" id = "estagio_forca" class="estado_forca" src = "{{url_for('forca.static',filename = 'forca0.png')}}"></img>
+        </div>
+        <h1 id=  "erros">Erros: 0</h2>
+      </section>
+      <section class="jogo-info" aria-label="Jogo da palavra">
+        <div class="palavra" aria-live="polite" aria-atomic="true" aria-relevant="additions removals">
+          <p id = "palavra_descobrir" name = "palavra_descobrir" class = "palavra_descobrir">_ _ _ _ _</p>
+          <!--
+          <span class="letra-espaco" aria-label="posição 1 letra">t</span>
+          <span class="letra-espaco" aria-label="posição 2 letra"></span>
+          <span class="letra-espaco" aria-label="posição 3 letra"></span>
+          <span class="letra-espaco" aria-label="posição 4 letra"></span>
+          <span class="letra-espaco" aria-label="posição 5 letra"></span>
+          <span class="letra-espaco" aria-label="posição 6 letra"></span>
+          -->
+        </div>
+        <p id = "letras_tentadas"> Tentativas: </p>
+        <form id = "form_escolher_letra" class="input-container" aria-label="Escolha da letra" >
+            <label for="letraInput">Escolha uma letra:</label>
+            <input type="text" id="letraInput" name = "letraInput" maxlength="1" pattern="[a-zA-Z]" autocomplete="off" inputmode="text" />
+        </form>
+        </div>
+      </section>
+  </div>
 </main>
 <footer>
   &copy; 2025 MORAVI MINIGAMES

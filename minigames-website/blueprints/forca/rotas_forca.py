@@ -1,3 +1,5 @@
+
+
 #  =====  Módulos =====
 from flask import Blueprint,session,render_template,redirect,url_for,request
 from blueprints.forca.logica_jogo.forca import Forca
@@ -8,48 +10,67 @@ fc_bp = Blueprint("forca",__name__,template_folder="templates",static_folder= "s
 
 def data():
     return session.setdefault("forca",{
-        "erros" : 0;
-        "palavra_esc"
+        "erros" : 0,
+        "palavra_escolhida" : fc.palavraAleatoria() ,
+        "letras_descobertas" :"",
+        "letras_tentadas" : []
+    }
+)
 
-    })
-    session["forca"] = {}
-    session["forca"]["erros"] = 0
-    session["forca"]["palavra_escolhida"] = fc.palavraAleatoria() 
-    session["forca"]["letras_descobertas"] = '_'* len(session["forca"]["palavra_escolhida"])
+def reiniciar_forca():
+    data()["erros"] = 0
+    data()["palavra_escolhida"] = fc.palavraAleatoria()
+    data()["letras_descobertas"] = '_'* len(data()["palavra_escolhida"])
+    data()["letras_tentadas"] = []
 
 @fc_bp.route("", methods = ["GET","POST"])
 def forca():
      
     if not session.get('forca'): # inicializa as variaveis da sessão logo que a primeira requisição é feita
-         print("Inicializando?")
-         inicializar_forca()
+         print("NAO TEM")
+         data()
+         data()["letras_descobertas"] = "_" * len(data()["palavra_escolhida"])
          
     if request.method == "POST":
-        
-        forca_data = session.get("forca")
-        print(forca_data)
-        dados = request.get_json() #aqui eu acesso os dados mandadados do client
+        dados = request.get_json() #aqui eu acesso os dados mandados do cliente
         escolha_p = fc.validarEscolha(dados.get("escolha_player"))
-   
-        ep = fc.checarLetraForca(forca_data["palavra_escolhida"],forca_data["letras_descobertas"],escolha_p)
-     
-        resposta = {}
-     
-        if forca_data["letras_descobertas"] != ep:
-   
-        
-             forca_data["letras_descobertas"] = ep
-             print(forca_data)
-        
+        repetiu_letra = False # podia ter um nome melhor, mas fiquei sem criativade
+
+        if escolha_p not in data()["letras_tentadas"]:  # exibir pro jogador depois ( poderia ser feito no cliente, mas se ele enviar uma letra que ja havia enviado novamente, conto como erro)
+            data()["letras_tentadas"].append(escolha_p)
         else:
-            print("errrouuu")
-            forca_data["erros"] += 1
-    
-        resposta["erros"] = forca_data["erros"]
-        resposta["letras_descobertas"] = forca_data["letras_descobertas"]
-        session["forca"] = forca_data
+            repetiu_letra = True # podia ter um nome melhor, mas fiquei sem criativade
+            data()["erros"] += 1
+
+        resposta = {}
+        
+        if not(repetiu_letra): # se  o jogador repetiu letra, nem precisa verificar
+            ep,resultado_jogo = fc.analisarTentativa(data()["palavra_escolhida"],data()["letras_descobertas"],escolha_p)
+            if resultado_jogo == "acertou_letra" :
+                print("Acertou letra!")
+                data()["letras_descobertas"] = ep
+                resposta["letras_descobertas"] = data()["letras_descobertas"]
+            elif resultado_jogo == "errou" :
+                data()["erros"] += 1
+                resposta["erros"] = data()["erros"]
+                if data()["erros"] >= 6:
+                    print("perdeu!")
+                    resposta["resultado_jogo"] = "perdeu"
+            else:   # jogador ganhou nesse caso ( resultado_jogo só pode ser: "acertou", "errou" ou "ganhou")
+                print("ganhou!")
+                resposta["palavra_original"] = data()["palavra_escolhida"]
+                resposta["resultado_jogo"] = "ganhou"
+                 # jogador ganhou nesse caso ( resultado_jogo só pode ser: "acertou", "errou" ou "ganhou")
+
+        # desculpa por esse if aqui, mas nao pensei em um jeito melhor de resetar isso sem fazer uma copia dos dados antes
+        resposta["letras_tentadas"] = data()["letras_tentadas"]
+        resposta["erros"] = data()["erros"]
+
+        if resultado_jogo == "perdeu" or resultado_jogo == "ganhou":
+            reiniciar_forca()
+        session.modified = True
         return resposta # vai ser enviado de volto pro js mostrar pro cliente
 
     #GET request so é atividado quando  a URL é acessada / página recarregada
-    jokenpo_data = session.get("jokenpo")
+
     return render_template('jogo_forca.html')

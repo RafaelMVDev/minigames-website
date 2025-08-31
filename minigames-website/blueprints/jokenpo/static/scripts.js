@@ -43,11 +43,12 @@ function exibir_mensagem_vitoria(vencedor){
             div_vitoria.style.backgroundColor = "red"
         }
         setTimeout(function() { // se setar direto, a animação de opacidade não ocorre, por isso a gente espera um pouco
-            div_vitoria.style.opacity = "100%"
+            div_vitoria.style.opacity = 1
         }, 0);
        
     }
     else{
+        div_vitoria.style.opacity = 0
         placar.style.display = "block"
         botao_jogar.style.display = "inline-block"
         div_vitoria.style.display = "none"

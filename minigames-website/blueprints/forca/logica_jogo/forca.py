@@ -1,4 +1,5 @@
 from random import choice
+from typing import Tuple
 
 class Forca():
     def __init__(self):
@@ -17,18 +18,33 @@ class Forca():
             return False
  
 
-    def checarLetraForca(self,palavra_original, estado_atual_palavra, letra):
-
+    def analisarTentativa(self,palavra_original, estado_atual_palavra, letra) -> Tuple[str,str] :
+        """
+        Função que além de retornar o estado atual da palavra após a tentativa, retorna o resultado do jogo: Se ele ganhou,apenas acertou alguma das letras, ou se errou.
+        """
         atual = list(estado_atual_palavra)
     
         for i in range(0,len(palavra_original)):
             if palavra_original[i] == letra:
+                print("É FILHA DA PUT")
                 atual[i] = letra
-       
-        return "".join(atual)
+        str_atual = "".join(atual)
+        resultado_jogo = False
+        if str_atual == palavra_original:
+            resultado_jogo = "ganhou"
+        elif str_atual != estado_atual_palavra: # se chegar nesse elif, letra(s) foram descobertas, então ele acertou, mas não ganhou!
+            resultado_jogo = "acertou_letra"
+        else:
+            resultado_jogo = "errou"
+        print(palavra_original)
+        print(str_atual)
+        print(estado_atual_palavra)
+        print(letra)
+        return [str_atual,resultado_jogo]
 
     def palavraAleatoria(self):
         return self.banco_palavras[choice(range(len(self.banco_palavras)))]
+
 
 
 

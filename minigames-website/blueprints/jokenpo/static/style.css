@@ -174,10 +174,13 @@ footer {
 .empate{
     color:rgb(218, 149, 0)
 }
+#msg_final{
+  color:white
+}
 .vitoria_div{
     align-items: center;
     justify-content: center;
-    opacity:0%;
+    opacity:0;
     border-radius:4px;
     transition: opacity 0.5s;
     display:none;
