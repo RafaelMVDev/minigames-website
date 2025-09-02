@@ -12,7 +12,7 @@ O site reúne alguns **minigames clássicos**, como **Forca** e **Jokenpô**, co
 - Minigames disponíveis:  
   - 📝 Forca  
   - ✊✋✌️ Jokenpô  
-
+  - Adivinhe o Número
 ## 🛠️ Tecnologias Utilizadas
 
 - [Python](https://www.python.org/) + [Flask](https://flask.palletsprojects.com/)  
