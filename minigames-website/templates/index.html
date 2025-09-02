@@ -4,24 +4,24 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style_pagina_inicial.css') }}">
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
 {% endblock %}
 
-{% block titulo_header %}M0ravi Company{% endblock %}
+{% block titulo_header %}Plataforma de Jogos{% endblock %}
 {% block conteudo %}
     <!-- ===== Carrossel ===== -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
         <div class="carousel-inner">
             <!-- Repetir esse bloco para cada jogo -->
-            <div class="carousel-item active">
-                <div class="d-flex flex-column align-items-center">
+            <div class="carousel-item active" >
+                <div class="d-flex flex-column align-items-center" >
                     <div class="marcador">Adivinhe o Número</div>
-                    <p>Neste jogo será sorteado um número e você fará tentativas para acertar ele. </p>
+                    <p style= "color:white; font-weight:bolder">Tente adivinhar o número que sera escolhido aleatoriamente! </p>
                     <img src="{{url_for('static',filename = 'index/game_adivinhe_img.png')}}" alt="Imagem do Jogo 1" />
                     <button data-rota = "adivinhar_numero"class="btn btn-primary btn-jogar">Jogar</button>
                 </div>
             </div>
-
+            <!--
             <div class="carousel-item">
                 <div class="d-flex flex-column align-items-center">
                     <div class="marcador">Batalha Naval</div>
@@ -31,11 +31,11 @@
                     <button class="btn btn-primary btn-jogar">Jogar</button>
                 </div>
             </div>
-
+            -->
             <div class="carousel-item">
                 <div class="d-flex flex-column align-items-center">
                     <div class="marcador">Jogo da Forca</div>
-                    <p>Deve-se descobrir a palavra secreta através do posicionamento das letras.</p>
+                    <p style= "color:white; font-weight:bolder">Deve-se descobrir a palavra secreta através do posicionamento das letras.</p>
                 
                     <img src="{{url_for('static',filename = 'index/game_forca_img.png')}}" alt="Imagem do Jogo 3" />
                     <button data-rota = "forca" class="btn btn-primary btn-jogar">Jogar</button>
@@ -45,14 +45,14 @@
             <div class="carousel-item">
                 <div class="d-flex flex-column align-items-center">
                     <div class="marcador">Jokenpo</div>
-                    <p>Também conhecido como "Pedra, Papel e Tesoura".</p>
-                    <p>É um jogo que através de gestos com as mãos determinar o vencedor.</p>
+                    <p style= "color:white; font-weight:bolder">Também conhecido como "Pedra, Papel e Tesoura".</p>
+                    <p style= "color:white; font-weight:bolder">É um jogo que através de gestos com as mãos determinar o vencedor.</p>
                    
                     <img src="{{url_for('static',filename = 'index/game_jokenpo_img.png')}}" alt="Imagem do Jogo 4" />
                     <button data-rota = "jokenpo"class="btn btn-primary btn-jogar">Jogar</button>
                 </div>
             </div>
-
+            <!--
             <div class="carousel-item">
                 <div class="d-flex flex-column align-items-center">
                     <div class="marcador">Quiz</div>
@@ -73,9 +73,9 @@
                     <button id = "test-btn" class="btn btn-primary btn-jogar">Jogar</button>
                 </div>
             </div>
-        
+             -->
         </div>
-
+           
         <!-- Indicadores -->
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -98,7 +98,7 @@
     </div>
 {% endblock %}
 {% block scripts %}
-     <script src = "{{url_for('static',filename = 'base/scripts.js')}}" defer></script>
+    <script src = "{{url_for('static',filename = 'base/scripts.js')}}" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>

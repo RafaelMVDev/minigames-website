@@ -18,11 +18,15 @@ function setarEstadoForca(estagio){
 }
 
 function atualizar_dados_rodada(pa, erros, letras_tentadas){
+    console.log("Atualizando dados!")
+    console.log(letras_tentadas)
     // alterando a mensagem de aviso que aparece depois de cada rodada
     label_erros.innerText = "Erros: "+erros
-    palavra_atual.innerText = pa.replace(/(.)/g, "$1 ").trim(); // para que fique um espaço entre cada letra. Ex: b _ n _ n _ a (fica melhor no visual)
     estado_forca.src = 'forca\\static\\'+"forca"  + erros +'.png'
     tentativas.innerText = "Tentativas: "+letras_tentadas.join(" ")
+    if (!pa){return}
+    palavra_atual.innerText = pa.replace(/(.)/g, "$1 ").trim(); // para que fique um espaço entre cada letra. Ex: b _ n _ n _ a (fica melhor no visual)
+
   
 }
 

@@ -1,23 +1,14 @@
+{% extends "base.html"%}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block titulo_site %} Jokenpo {% endblock %}
+
+{% block estilos_css %}
     <link rel="stylesheet" href="{{ url_for('jokenpo.static', filename='style.css') }}">
-    <title>Jokenpo</title>
-</head>
-<body>
-    <header>
-        <h1>Jokenpo</h1>
-        <nav>
-          <a href="#" tabindex="0" aria-label="Página Inicial">página inicial</a>
-          <a href="#" tabindex="0" aria-label="GitHub">github</a>
-          <a href="#" tabindex="0" aria-label="LinkedIn">linkedin</a>
-        </nav>
-      
-    </header>
- 
-    <div class = "main_div">
+{% endblock %}
+
+{% block titulo_header %}Jokenpo{% endblock %}
+{% block conteudo %}
+<div class = "main_div">
         <h2>Escolha uma das três opções</h2>
         <div class = "options_div">
             
@@ -73,9 +64,7 @@
        
         
     </div>
+{% endblock %}
+{% block scripts %}
     <script src = "{{url_for('jokenpo.static',filename = 'scripts.js')}}" defer></script>
-    <footer>
-        &copy; 2025 MORAVI MINIGAMES
-    </footer>
-</body>
-</html>
+{% endblock %}

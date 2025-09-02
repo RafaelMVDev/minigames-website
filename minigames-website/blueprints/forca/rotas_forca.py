@@ -43,7 +43,7 @@ def forca():
             data()["erros"] += 1
 
         resposta = {}
-        
+        resultado_jogo = False
         if not(repetiu_letra): # se  o jogador repetiu letra, nem precisa verificar
             ep,resultado_jogo = fc.analisarTentativa(data()["palavra_escolhida"],data()["letras_descobertas"],escolha_p)
             if resultado_jogo == "acertou_letra" :

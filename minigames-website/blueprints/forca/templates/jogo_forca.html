@@ -1,22 +1,11 @@
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jogo da Forca</title>
+{% extends "base.html"%}
+{% block titulo_site %} Jogo da Forca {% endblock %}
+{% block estilos_css %}
   <link rel="stylesheet" href="{{ url_for('forca.static', filename='style.css') }}">
-</head>
-<body>
-<header>
-    <h1>Jogo da Forca</h1>
-    <nav>
-      <a href="#" tabindex="0" aria-label="Página Inicial">página inicial</a>
-      <a href="#" tabindex="0" aria-label="GitHub">github</a>
-      <a href="#" tabindex="0" aria-label="LinkedIn">linkedin</a>
-    </nav>
-  
-</header>
+{% endblock %}
+
+{% block titulo_header %}Jogo da Forca{% endblock %}
+{% block conteudo %}
 <main>
   <div class = "game_div">
       <div id = "v_div" class = "vitoria_div" name = "v_div">
@@ -51,10 +40,9 @@
       </section>
   </div>
 </main>
-<footer>
-  &copy; 2025 MORAVI MINIGAMES
-</footer>
-<script src = "{{url_for('forca.static',filename = 'scripts.js')}}" defer></script>
-</body>
-</html>
+{% endblock %}
+{% block scripts %}
+  <script src = "{{url_for('forca.static',filename = 'scripts.js')}}" defer></script>
+{% endblock %}
+
 
